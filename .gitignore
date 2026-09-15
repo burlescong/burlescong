@@ -1,6 +1,8 @@
 dist/
+build/
 burlesco-rsa-key.pem
 burlesco-pkcs8-key.pem
+.env
 .DS_Store
 node_modules/
 .idea/
