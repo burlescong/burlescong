@@ -31,7 +31,9 @@
         "*://*.nexojornal.com.br/*",
         "*://*.observador.pt/*",
         "*://*.valor.globo.com/*",
-        "*://*.jornaldocomercio.com/*"
+        "*://*.jornaldocomercio.com/*",
+        "*://crusoe.com.br/*",
+        "*://*.crusoe.com.br/*"
       ]
     },
     {
@@ -45,7 +47,8 @@
         "*://*.dgabc.com.br/*",
         "*://*.epoca.globo.com/*",
         "*://*.nexojornal.com.br/*",
-        "*://crusoe.uol.com.br/*",
+        "*://crusoe.com.br/*",
+        "*://*.crusoe.com.br/*",
         "*://*.em.com.br/*",
         "*://*.jornaldocomercio.com/*"
       ]
@@ -107,7 +110,9 @@
     "*://*.valor.globo.com/*",
     "*://revistagalileu.globo.com/*",
     "*://*.zephr.com/*",
-    "*://*.jornaldocomercio.com/*"
+    "*://*.jornaldocomercio.com/*",
+    "*://crusoe.com.br/*",
+    "*://*.crusoe.com.br/*"
   ],
   "browser_specific_settings": {
     "gecko": {

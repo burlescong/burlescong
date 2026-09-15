@@ -1,6 +1,6 @@
 // run_at: document_start
 const SITES_START: Record<string, RegExp> = {
-  crusoe: /crusoe.uol.com.br/,
+  crusoe: /crusoe.com.br/,
   diariograndeabc: /dgabc.com.br/,
   em: /em\.com\.br/,
   jornaldocomercio: /jornaldocomercio\.com/,

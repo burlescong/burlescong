@@ -1,6 +1,7 @@
 // run_at: document_idle
 const SITES_IDLE: Record<string, RegExp> = {
   correio24horas: /correio24horas\.com\.br/,
+  crusoe: /crusoe\.com\.br/,
   diariodaregiao: /diariodaregiao\.com\.br/,
   exame: /exame\.com\.br/,
   folhadespaulo: /folha.uol.com.br/,
