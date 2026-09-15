@@ -157,6 +157,7 @@ const BLOCKLIST: Record<string, SiteRules> = {
   superinteressante: {
     scriptBlocking: [
       'https://*.abril.com.br/wp-content/plugins/abril-plugins/abril-paywall/js/paywall.js*',
+      'https://*.abril.com.br/wp-content/plugins/abril-plugins/abril-paywall/js/abril-firebase-auth/*paywall.js',
     ],
   },
   uol: {
@@ -178,6 +179,11 @@ const BLOCKLIST: Record<string, SiteRules> = {
   },
   observador: {
     scriptBlocking: ['*://*.tinypass.com/*'],
+  },
+  jornaldocomercio: {
+    xhrBlocking: [
+      '*://*.jornaldocomercio.com/_conteudo/_files/json/paywall.json*',
+    ],
   },
 };
 
@@ -294,9 +300,6 @@ function apply(): void {
 }
 
 const INJECTION_START: Record<string, Injection> = {
-  crusoe: function () {
-    document.cookie = 'crs_subscriber=1';
-  },
   diariograndeabc: function () {
     const email = 'colaborador@dgabc.com.br';
     localStorage.emailNoticiaExclusiva = email;
@@ -493,6 +496,99 @@ const INJECTION: Record<string, Injection> = {
   jota: function () {
     const p = document.getElementsByClassName('jota-paywall')[0];
     if (p) p.remove();
+  },
+  jornaldocomercio: function () {
+    const unlock = () => {
+      const carregando = document.querySelector('.paywall-carregando');
+
+      const path = document.getElementById('ds_matia_path')?.textContent?.trim();
+      const completa = document.querySelector('.materia-completa');
+      if (
+        completa &&
+        path &&
+        !completa.childElementCount &&
+        typeof window.carregar_xml_materia === 'function'
+      ) {
+        carregando?.remove();
+        window.carregar_xml_materia(path);
+      }
+
+      document.querySelector('.paywall-container')?.remove();
+      document.querySelector('.paywall-limite')?.remove();
+      document
+        .querySelectorAll(
+          '.paywall-v2, .paywall-v3, .paywall-login, .bg-overlay-paywall, .bg-overlay-paywall-dark',
+        )
+        .forEach((el) => el.remove());
+      if (typeof window.paywallCustomEvent === 'function') {
+        window.paywallCustomEvent('off');
+      }
+    };
+    unlock();
+    setTimeout(unlock, 500);
+    setTimeout(unlock, 2000);
+  },
+  crusoe: function () {
+    const corpo = document.getElementById('content_post');
+    if (!corpo || !corpo.querySelector('section.paywall')) return;
+
+    const postId =
+      document.body.className.match(/postid-(\d+)/)?.[1] ||
+      document
+        .querySelector<HTMLLinkElement>(
+          'link[rel="alternate"][type="application/json"]',
+        )
+        ?.href.match(/\/posts\/(\d+)/)?.[1];
+    if (!postId) return;
+
+    const fillFromText = (text: string) => {
+      corpo.querySelector('section.paywall')?.remove();
+      corpo.innerHTML = text
+        .split(/\n+/)
+        .map((t) => t.trim())
+        .filter(Boolean)
+        .map((t) => `<p>${t}</p>`)
+        .join('');
+    };
+
+    fetch(`/wp-json/wp/v2/posts/${postId}`)
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((data: { content?: { rendered?: string } }) => {
+        const html = data.content?.rendered;
+        if (!html) throw new Error('empty');
+        corpo.innerHTML = html;
+      })
+      .catch(() => {
+        const scripts = document.querySelectorAll(
+          'script[type="application/ld+json"]',
+        );
+        for (const script of scripts) {
+          try {
+            const parsed = JSON.parse(script.textContent || '');
+            const nodes = Array.isArray(parsed) ? parsed : [parsed];
+            const all: Array<{ '@type'?: string; articleBody?: string; '@graph'?: unknown }> =
+              [];
+            for (const node of nodes) {
+              if (node?.['@graph'] && Array.isArray(node['@graph'])) {
+                all.push(...node['@graph']);
+              } else {
+                all.push(node);
+              }
+            }
+            const article = all.find(
+              (n) =>
+                (n['@type'] === 'NewsArticle' || n['@type'] === 'Article') &&
+                n.articleBody,
+            );
+            if (article?.articleBody) {
+              fillFromText(String(article.articleBody));
+              break;
+            }
+          } catch {
+            /* ignore */
+          }
+        }
+      });
   },
   observador: function () {
     const p = document.querySelector('.piano-article-blocker');

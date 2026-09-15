@@ -18,6 +18,7 @@ const SITES = [
   'gazetaonline',
   'gauchazh',
   'jornalnh',
+  'jornaldocomercio',
   'jornalvs',
   'jota',
   'nexo',
