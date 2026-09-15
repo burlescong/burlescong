@@ -108,9 +108,11 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "linneudm@burles.co"
+      "id": "linneudm@burles.co",
+      "update_url": "https://linneudm.github.io/burlesco-update/firefox.json"
     }
   },
+  "update_url": "https://linneudm.github.io/burlesco-update/chromium.xml",
   "options_ui": {
     "page": "options.html"
   }
