@@ -5,8 +5,8 @@
 </p>
 
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/rodorgas/burlesco)
-[![GitHub release](https://img.shields.io/github/release/burlesco/burlesco.svg)](https://github.com/burlesco/burlesco/releases/latest/)
-[![Build Status](https://travis-ci.org/burlesco/burlesco.svg?branch=master)](https://travis-ci.org/burlesco/burlesco)
+[![GitHub release](https://img.shields.io/github/release/linneudm/burlesco.svg)](https://github.com/linneudm/burlesco/releases/latest/)
+[![Build Status](https://app.travis-ci.com/linneudm/burlesco.svg?branch=master)](https://app.travis-ci.com/linneudm/burlesco)
 
 
 Extensão e userscript para navegadores que remove o paywall poroso de diversos sites de notícia. Funciona no Opera, Firefox e Chrome (e em qualquer navegador compatível com WebExtension).
@@ -34,6 +34,16 @@ Há scripts npm para o desenvolvimento:
 - `npm run build`: empacota a extensão para cada navegador (zip, CRX e XPI).
 
 Para assinar o XPI do Firefox, copie `.env.example` para `.env` e preencha `mozilla_api_key` / `mozilla_api_secret` (API keys do [AMO](https://addons.mozilla.org/developers/addon/api/key/)).
+
+### Release (Travis)
+
+Releases são publicadas ao enviar uma tag `vX.Y` no `master` de [linneudm/burlesco](https://github.com/linneudm/burlesco). Configure no Travis:
+
+- `GITHUB_TOKEN` com permissão de contents/releases (e push em `linneudm/burlesco-update`);
+- `mozilla_api_key` / `mozilla_api_secret` para assinar o XPI;
+- `CRX_PRIVATE_KEY` com o conteúdo do `burlesco-pkcs8-key.pem` (se as quebras de linha sumirem no Travis, use `\n` literais no valor; o job grava o arquivo com `printf '%b'`).
+
+O feed de auto-update vai para o repo [linneudm/burlesco-update](https://github.com/linneudm/burlesco-update) (`https://linneudm.github.io/burlesco-update/`).
 
 ## Userscript
 
