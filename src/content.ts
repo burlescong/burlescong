@@ -1,5 +1,5 @@
 // run_at: document_idle
-const SITES_IDLE = {
+const SITES_IDLE: Record<string, RegExp> = {
   correio24horas: /correio24horas\.com\.br/,
   diariodaregiao: /diariodaregiao\.com\.br/,
   exame: /exame\.com\.br/,
@@ -16,15 +16,16 @@ const SITES_IDLE = {
 };
 
 chrome.storage.local.get('sites', function (result) {
-  let enabledSites = result.sites || {};
-  for (let site in SITES_IDLE) {
+  const enabledSites: SiteStatus = result.sites || {};
+  for (const site in SITES_IDLE) {
     if (enabledSites[site] === false) continue;
     if (SITES_IDLE[site].test(document.location.host)) {
-      chrome.runtime.sendMessage({
+      const message: ExecuteScriptMessage = {
         action: 'executeScript',
         type: 'idle',
         site: site,
-      });
+      };
+      chrome.runtime.sendMessage(message);
       break;
     }
   }

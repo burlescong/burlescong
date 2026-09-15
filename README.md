@@ -17,15 +17,20 @@ Para instalar no seu navegador e para mais informações sobre o projeto, visite
 
 ## Extensão
 
-O código-fonte da extensão possui basicamente três arquivos, na pasta `webext/`:
+O código-fonte da extensão está escrito em TypeScript, na pasta `src/`:
 
 - `manifest.json`: descreve a extensão para os navegadores e define as permissões;
-- `background.js`: bloqueia/manipula pedidos responsáveis pelo paywall;
-- `content*.js`: injeta scripts para impedir a ativação do paywall ou revertê-lo.
+- `background.ts`: bloqueia/manipula pedidos responsáveis pelo paywall;
+- `content*.ts`: injeta scripts para impedir a ativação do paywall ou revertê-lo;
+- `options.ts`: a página que liga e desliga cada site;
+- `globals.d.ts`: tipos compartilhados entre os scripts.
+
+Instale as dependências com `npm install` antes de começar. O TypeScript é compilado para JavaScript na hora de empacotar, e é esse JavaScript que os navegadores carregam.
 
 Há um Makefile para auxiliar no desenvolvimento:
 
-- `make lint`: verifica erros de sintaxe ou de estilo no código. Requer o [`es-lint`](https://github.com/eslint/eslint) que pode instalado com `npm install -g eslint`;
+- `make lint`: valida os JSONs, checa os tipos com `tsc` e roda o [`eslint`](https://github.com/eslint/eslint);
+- `make pre-build`: compila o TypeScript e monta `dist/chromium/src` e `dist/firefox/src`, prontos para serem carregados como extensão sem empacotar;
 - `make`: executa todas as etapas incluindo o lint e gera extensões empacotadas para cada navegador.
 
 ## Userscript

@@ -1,5 +1,5 @@
 // run_at: document_start
-const SITES_START = {
+const SITES_START: Record<string, RegExp> = {
   crusoe: /crusoe.uol.com.br/,
   diariograndeabc: /dgabc.com.br/,
   em: /em\.com\.br/,
@@ -8,15 +8,16 @@ const SITES_START = {
 };
 
 chrome.storage.local.get('sites', function (result) {
-  let enabledSites = result.sites || {};
-  for (let site in SITES_START) {
+  const enabledSites: SiteStatus = result.sites || {};
+  for (const site in SITES_START) {
     if (enabledSites[site] === false) continue;
     if (SITES_START[site].test(document.location.host)) {
-      chrome.runtime.sendMessage({
+      const message: ExecuteScriptMessage = {
         action: 'executeScript',
         type: 'start',
         site: site,
-      });
+      };
+      chrome.runtime.sendMessage(message);
       break;
     }
   }
