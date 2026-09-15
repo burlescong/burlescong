@@ -1,0 +1,69 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Write CRX private key
+        env:
+          CRX_PRIVATE_KEY: ${{ secrets.CRX_PRIVATE_KEY }}
+        run: |
+          if [ -z "$CRX_PRIVATE_KEY" ]; then
+            echo "missing secret CRX_PRIVATE_KEY"
+            exit 1
+          fi
+          printf '%b\n' "$CRX_PRIVATE_KEY" > burlesco-pkcs8-key.pem
+
+      - name: Build extension packages
+        env:
+          mozilla_api_key: ${{ secrets.mozilla_api_key }}
+          mozilla_api_secret: ${{ secrets.mozilla_api_secret }}
+        run: npm run build
+
+      - name: Generate update feeds
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: bash scripts/gen-gh-pages.sh
+
+      - name: Resolve release assets
+        id: assets
+        run: |
+          xpi="$(ls dist/firefox/*.xpi)"
+          echo "xpi=$xpi" >> "$GITHUB_OUTPUT"
+
+      - name: Upload GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/chromium/burlesco-chromium.crx
+            dist/chromium/burlesco-chromium.zip
+            ${{ steps.assets.outputs.xpi }}
+            dist/firefox/burlesco-firefox.zip
+          generate_release_notes: true
+
+      - name: Publish update feeds
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.UPDATE_TOKEN }}
+          external_repository: linneudm/burlesco-update
+          publish_branch: master
+          publish_dir: gh-pages
+          keep_files: true
+          force_orphan: false
