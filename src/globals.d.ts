@@ -16,6 +16,19 @@ interface Window {
   id_acesso_noticia?: number;
   omtrClickUOL?: () => void;
   __ISOMORPHIC_DATA__?: string;
+  usuarioAssinante?: () => boolean;
+  usuarioPremium?: () => boolean;
+  usuarioPj?: () => boolean;
+  usuario?: {
+    id?: number | string;
+    nome?: string;
+    email?: string;
+    assinante?: boolean;
+    premium?: boolean;
+    pj?: boolean;
+  };
+  paywallCustomEvent?: (state: string) => void;
+  carregar_xml_materia?: (ds_matia_path: string) => void;
 }
 
 /** Maps a site id to whether the user left it enabled in the options page. */

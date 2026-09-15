@@ -78,6 +78,7 @@ O Burlesco funciona com os seguintes sites de notícia:
 - GaúchaZH
 - JOTA
 - Jornal NH
+- Jornal do Comércio
 - Jornal Pioneiro
 - Jornal VS
 - NSC Total

@@ -30,7 +30,8 @@
         "*://*.correio24horas.com.br/*",
         "*://*.nexojornal.com.br/*",
         "*://*.observador.pt/*",
-        "*://*.valor.globo.com/*"
+        "*://*.valor.globo.com/*",
+        "*://*.jornaldocomercio.com/*"
       ]
     },
     {
@@ -45,7 +46,8 @@
         "*://*.epoca.globo.com/*",
         "*://*.nexojornal.com.br/*",
         "*://crusoe.uol.com.br/*",
-        "*://*.em.com.br/*"
+        "*://*.em.com.br/*",
+        "*://*.jornaldocomercio.com/*"
       ]
     }
   ],
@@ -104,7 +106,8 @@
     "*://observador.pt/*",
     "*://*.valor.globo.com/*",
     "*://revistagalileu.globo.com/*",
-    "*://*.zephr.com/*"
+    "*://*.zephr.com/*",
+    "*://*.jornaldocomercio.com/*"
   ],
   "browser_specific_settings": {
     "gecko": {

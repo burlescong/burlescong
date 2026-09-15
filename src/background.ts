@@ -180,6 +180,11 @@ const BLOCKLIST: Record<string, SiteRules> = {
   observador: {
     scriptBlocking: ['*://*.tinypass.com/*'],
   },
+  jornaldocomercio: {
+    xhrBlocking: [
+      '*://*.jornaldocomercio.com/_conteudo/_files/json/paywall.json*',
+    ],
+  },
 };
 
 function generateRules(
@@ -494,6 +499,37 @@ const INJECTION: Record<string, Injection> = {
   jota: function () {
     const p = document.getElementsByClassName('jota-paywall')[0];
     if (p) p.remove();
+  },
+  jornaldocomercio: function () {
+    const unlock = () => {
+      const carregando = document.querySelector('.paywall-carregando');
+
+      const path = document.getElementById('ds_matia_path')?.textContent?.trim();
+      const completa = document.querySelector('.materia-completa');
+      if (
+        completa &&
+        path &&
+        !completa.childElementCount &&
+        typeof window.carregar_xml_materia === 'function'
+      ) {
+        carregando?.remove();
+        window.carregar_xml_materia(path);
+      }
+
+      document.querySelector('.paywall-container')?.remove();
+      document.querySelector('.paywall-limite')?.remove();
+      document
+        .querySelectorAll(
+          '.paywall-v2, .paywall-v3, .paywall-login, .bg-overlay-paywall, .bg-overlay-paywall-dark',
+        )
+        .forEach((el) => el.remove());
+      if (typeof window.paywallCustomEvent === 'function') {
+        window.paywallCustomEvent('off');
+      }
+    };
+    unlock();
+    setTimeout(unlock, 500);
+    setTimeout(unlock, 2000);
   },
   observador: function () {
     const p = document.querySelector('.piano-article-blocker');

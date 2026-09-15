@@ -3,6 +3,7 @@ const SITES_START: Record<string, RegExp> = {
   crusoe: /crusoe.uol.com.br/,
   diariograndeabc: /dgabc.com.br/,
   em: /em\.com\.br/,
+  jornaldocomercio: /jornaldocomercio\.com/,
   oglobo: /globo\.com/,
   nexo: /nexojornal\.com\.br/,
 };

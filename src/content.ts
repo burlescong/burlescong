@@ -6,6 +6,7 @@ const SITES_IDLE: Record<string, RegExp> = {
   folhadespaulo: /folha.uol.com.br/,
   galileu: /revistagalileu\.globo\.com/,
   gauchazh: /gauchazh.clicrbs.com.br/,
+  jornaldocomercio: /jornaldocomercio\.com/,
   nexo: /nexojornal\.com\.br/,
   seudinheiro: /seudinheiro.com/,
   superinteressante: /super.abril.com.br/,
