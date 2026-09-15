@@ -157,6 +157,7 @@ const BLOCKLIST: Record<string, SiteRules> = {
   superinteressante: {
     scriptBlocking: [
       'https://*.abril.com.br/wp-content/plugins/abril-plugins/abril-paywall/js/paywall.js*',
+      'https://*.abril.com.br/wp-content/plugins/abril-plugins/abril-paywall/js/abril-firebase-auth/*paywall.js',
     ],
   },
   uol: {
