@@ -16,6 +16,7 @@ ignorePatterns:
   - build/
   - dist/
   - node_modules/
+  - scripts/
 rules:
   indent:
     - error

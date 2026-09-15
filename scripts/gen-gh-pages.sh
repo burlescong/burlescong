@@ -10,6 +10,7 @@ cat > $BUILD_DIR/chromium.xml <<EOL
 </gupdate>
 EOL
 
+FIREFOX_XPI="$(basename "$(ls "$TRAVIS_BUILD_DIR"/dist/firefox/*.xpi)")"
 
 cat > $BUILD_DIR/firefox.json <<EOL
 {
@@ -18,7 +19,7 @@ cat > $BUILD_DIR/firefox.json <<EOL
       "updates": [
         {
           "version": "${TRAVIS_TAG:1}",
-          "update_link": "https://github.com/burlesco/burlesco/releases/download/$TRAVIS_TAG/burlesco-firefox.xpi"
+          "update_link": "https://github.com/burlesco/burlesco/releases/download/$TRAVIS_TAG/$FIREFOX_XPI"
         }
       ]
     }

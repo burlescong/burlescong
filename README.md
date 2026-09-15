@@ -27,11 +27,13 @@ O código-fonte da extensão está escrito em TypeScript, na pasta `src/`:
 
 Instale as dependências com `npm install` antes de começar. O TypeScript é compilado para JavaScript na hora de empacotar, e é esse JavaScript que os navegadores carregam.
 
-Há um Makefile para auxiliar no desenvolvimento:
+Há scripts npm para o desenvolvimento:
 
-- `make lint`: valida os JSONs, checa os tipos com `tsc` e roda o [`eslint`](https://github.com/eslint/eslint);
-- `make pre-build`: compila o TypeScript e monta `dist/chromium/src` e `dist/firefox/src`, prontos para serem carregados como extensão sem empacotar;
-- `make`: executa todas as etapas incluindo o lint e gera extensões empacotadas para cada navegador.
+- `npm run lint`: valida os JSONs, checa os tipos com `tsc` e roda o [`eslint`](https://github.com/eslint/eslint);
+- `npm run pre-build`: compila o TypeScript e monta `dist/chromium/src` e `dist/firefox/src`, prontos para serem carregados como extensão sem empacotar;
+- `npm run build`: empacota a extensão para cada navegador (zip, CRX e XPI).
+
+Para assinar o XPI do Firefox, copie `.env.example` para `.env` e preencha `mozilla_api_key` / `mozilla_api_secret` (API keys do [AMO](https://addons.mozilla.org/developers/addon/api/key/)).
 
 ## Userscript
 

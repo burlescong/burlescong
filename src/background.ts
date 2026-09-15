@@ -444,7 +444,7 @@ const INJECTION: Record<string, Injection> = {
       });
       const content = parts.reduce((acc, curr) => acc + curr, '');
 
-      for (;;) {
+      for (; ;) {
         const article = document.querySelector('.article-paragraph');
         if (article === null) {
           await new Promise((r) => setTimeout(r, 1000));
