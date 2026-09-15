@@ -17,7 +17,7 @@ pre-build: clean
 		mkdir -p "$$SRC_DIR" ; \
 		cp -r src/* "$$SRC_DIR" ; \
 		if [ $$i != "firefox" ]; then \
-			perl -0pe 's/,\s+"applications": \{(.*?\}){2}//s' \
+			perl -0pe 's/,\s+"browser_specific_settings": \{(.*?\}){2}//s' \
 				src/manifest.json > "$$SRC_DIR/manifest.json" ; \
 		else \
 			perl -0pe 's/,\s+"update_url": "https:\/\/burlesco.github.io\/burlesco-update\/chromium.xml"//s' \

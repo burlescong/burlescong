@@ -32,13 +32,13 @@ const SITES = [
   'uol',
   'veja',
   'observador',
-  'valoreconomico'
+  'valoreconomico',
 ];
 
 function saveOptions(e) {
   function showUpdateSucess() {
     document.querySelector('#save-success').style.display = 'inline-block';
-    setTimeout(function() {
+    setTimeout(function () {
       document.querySelector('#save-success').style.display = 'none';
     }, 3000);
   }
@@ -49,7 +49,7 @@ function saveOptions(e) {
   for (let site of SITES)
     siteStatus[site] = document.querySelector('#' + site).checked;
 
-  chrome.storage.local.set({sites: siteStatus});
+  chrome.storage.local.set({ sites: siteStatus });
   chrome.runtime.sendMessage('update');
 
   showUpdateSucess();
@@ -60,9 +60,8 @@ function restoreOptions() {
     document.querySelector('#' + site).checked = status;
   }
 
-  chrome.storage.local.get('sites', function(result) {
-    for (let site in result.sites)
-      setCurrentSite(site, result.sites[site]);
+  chrome.storage.local.get('sites', function (result) {
+    for (let site in result.sites) setCurrentSite(site, result.sites[site]);
   });
 }
 
@@ -72,9 +71,11 @@ function changeAll(check) {
     input.checked = check;
   }
 }
+
 function checkNone() {
   changeAll(false);
 }
+
 function checkAll() {
   changeAll(true);
 }
