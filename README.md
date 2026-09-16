@@ -1,16 +1,12 @@
-<p align="center">
-  <a href="https://burles.co">
-    <img width="533" src="cover.png">
-  </a>
-</p>
+![](cover.png)
 
-[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/rodorgas/burlesco)
-[![GitHub release](https://img.shields.io/github/release/burlescong/burlesco.svg)](https://github.com/burlescong/burlescong/releases/latest/)
-[![CI](https://github.com/burlescong/burlescong/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/burlescong/burlescong/actions/workflows/ci.yml)
+[![Email](https://img.shields.io/badge/Email-linneu.dm%40gmail.com-D14836?logo=gmail&logoColor=white)](mailto:linneu.dm@gmail.com)
+![GitHub Release](https://img.shields.io/github/v/release/burlescong/burlescong?display_name=tag)
+![CI](https://github.com/burlescong/burlescong/actions/workflows/ci.yml/badge.svg?branch=master)
 
 Extensão e userscript para navegadores que remove o paywall poroso de diversos sites de notícia. Funciona no Opera, Firefox e Chrome (e em qualquer navegador compatível com WebExtension).
 
-Para instalar no seu navegador e para mais informações sobre o projeto, visite https://burles.co
+Para instalar no seu navegador e para mais informações sobre o projeto, visite [https://burles.co](https://burles.co)
 
 # Desenvolvimento
 
@@ -28,7 +24,7 @@ Instale as dependências com `npm install` antes de começar. O TypeScript é co
 
 Há scripts npm para o desenvolvimento:
 
-- `npm run lint`: valida os JSONs, checa os tipos com `tsc` e roda o [`eslint`](https://github.com/eslint/eslint);
+- `npm run lint`: valida os JSONs, checa os tipos com `tsc` e roda o `[eslint](https://github.com/eslint/eslint)`;
 - `npm run pre-build`: compila o TypeScript e monta `dist/chromium/src` e `dist/firefox/src`, prontos para serem carregados como extensão sem empacotar;
 - `npm run build`: empacota a extensão para cada navegador (zip, CRX e XPI).
 
@@ -48,13 +44,11 @@ O workflow `Release` empacota a extensão, cria a GitHub Release e atualiza os f
 
 **DESCONTINUADO**
 
-O código-fonte do userscript está em um repositório próprio [aqui](https://github.com/b/userscript). Ele funciona bloqueando pedidos responsáveis pelo paywall e injetando scripts para impedir sua ativação.
-
-Esse userscript funciona apenas com o Tampermonkey, porque é o único com suporte a API @webRequest.
+A menos que você nos forneça um bom motivo para continuar com ele, poderemos trabalhar juntos.
 
 ---
 
-Se você tiver alguma dúvida ou ideia para burlar um site novo, abra uma issue ou nos [encontre no Gitter](https://gitter.im/rodorgas/burlesco).
+Se você tiver alguma dúvida ou ideia para burlar um site novo, abra uma issue ou nos [contate por email](mailto:linneu.dm@gmail.com).
 
 # Publicações suportadas
 
