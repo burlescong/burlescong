@@ -5,9 +5,8 @@
 </p>
 
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/rodorgas/burlesco)
-[![GitHub release](https://img.shields.io/github/release/linneudm/burlesco.svg)](https://github.com/linneudm/burlesco/releases/latest/)
-[![CI](https://github.com/linneudm/burlesco/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/linneudm/burlesco/actions/workflows/ci.yml)
-
+[![GitHub release](https://img.shields.io/github/release/burlescong/burlesco.svg)](https://github.com/burlescong/burlescong/releases/latest/)
+[![CI](https://github.com/burlescong/burlescong/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/burlescong/burlescong/actions/workflows/ci.yml)
 
 Extensão e userscript para navegadores que remove o paywall poroso de diversos sites de notícia. Funciona no Opera, Firefox e Chrome (e em qualquer navegador compatível com WebExtension).
 
@@ -37,21 +36,23 @@ Para assinar o XPI do Firefox, copie `.env.example` para `.env` e preencha `mozi
 
 ### Release (GitHub Actions)
 
-Releases são publicadas ao enviar uma tag `vX.Y` (ex.: `v15.1`) no `master` de [linneudm/burlesco](https://github.com/linneudm/burlesco). Configure estes secrets no repositório (Settings → Secrets and variables → Actions):
+Releases são publicadas ao enviar uma tag `vX.Y` (ex.: `v15.1`) no `master` de [burlescong/burlescong](https://github.com/burlescong/burlescong). Configure estes secrets no repositório (Settings → Secrets and variables → Actions):
 
 - `CRX_PRIVATE_KEY` — conteúdo do `burlesco-pkcs8-key.pem` (se as quebras de linha sumirem, use `\n` literais; o workflow grava o arquivo com `printf '%b'`);
 - `mozilla_api_key` / `mozilla_api_secret` — assinatura do XPI no AMO;
-- `UPDATE_TOKEN` — Personal Access Token com permissão de push em [linneudm/burlesco-update](https://github.com/linneudm/burlesco-update) (o `GITHUB_TOKEN` padrão não alcança outro repo).
+- `UPDATE_TOKEN` — Personal Access Token com permissão de push em [burlescong/burlesco-update](https://github.com/linnburlescongeudm/burlesco-update) (o `GITHUB_TOKEN` padrão não alcança outro repo).
 
-O workflow `Release` empacota a extensão, cria a GitHub Release e atualiza os feeds em `burlesco-update` (`https://linneudm.github.io/burlesco-update/`). O workflow `CI` roda `npm run lint` em pushes/PRs para `master`.
+O workflow `Release` empacota a extensão, cria a GitHub Release e atualiza os feeds em `burlesco-update` (`https://burlescong.github.io/burlesco-update/`). O workflow `CI` roda `npm run lint` em pushes/PRs para `master`.
 
 ## Userscript
 
-O código-fonte do userscript está em um repositório próprio [aqui](https://github.com/burlesco/userscript). Ele funciona bloqueando pedidos responsáveis pelo paywall e injetando scripts para impedir sua ativação.
+**DESCONTINUADO**
+
+O código-fonte do userscript está em um repositório próprio [aqui](https://github.com/b/userscript). Ele funciona bloqueando pedidos responsáveis pelo paywall e injetando scripts para impedir sua ativação.
 
 Esse userscript funciona apenas com o Tampermonkey, porque é o único com suporte a API @webRequest.
 
-----
+---
 
 Se você tiver alguma dúvida ou ideia para burlar um site novo, abra uma issue ou nos [encontre no Gitter](https://gitter.im/rodorgas/burlesco).
 

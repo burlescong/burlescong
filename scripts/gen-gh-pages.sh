@@ -13,7 +13,7 @@ VERSION="${TAG#v}"
 BUILD_DIR="$ROOT/gh-pages/"
 mkdir -p "$BUILD_DIR"
 
-REPO=linneudm/burlesco
+REPO=burlescong/burlescong
 FIREFOX_ID=linneudm@burles.co
 
 cat > "$BUILD_DIR/chromium.xml" <<EOL
